@@ -1,5 +1,5 @@
 function A=build_adj(id,firmid)
-%%%% Adjusted from code of the Kline, P., Saggio, R., & Sølvsten, M. (2020). Leave‐out estimation of variance components. Econometrica, 88(5), 1859-1898.
+%%%% Adapted from code from Kline, P., Saggio, R., & Sølvsten, M. (2020). Leave‐out estimation of variance components. Econometrica, 88(5), 1859-1898.
 %%%% Source: https://github.com/rsaggio87/LeaveOutTwoWay/blob/master/codes/build_adj.m
 
 
@@ -24,7 +24,7 @@ function A=build_adj(id,firmid)
     % Get ids of movers
     id_movers=id(movers);
     id_movers_orig=id_movers;
-    [ids,m,id_movers]=unique(id_movers);
+    %[ids,m,id_movers]=unique(id_movers);
     % Get firmids of movers, firms potentially in the main connected set
     firmid_movers=firmid(movers);
     % Index to find first observation per id of the movers
@@ -39,7 +39,7 @@ function A=build_adj(id,firmid)
     % Main list of moves from the movers
     sel=list(:,1)~=list(:,2);
     list=list(sel,:);
-    % Get uniques to reduce the dimension of the sparse adjacency matrix
+    % Get unique identifiers to reduce the dimension of vectors forming the sparse adjacency matrix
     [u_list,i2unique,i2orig]=unique(list(:,1:2),'rows');
     weight=histc(i2orig,1:numel(i2unique)); %frequencies
     J=max(firmid);
